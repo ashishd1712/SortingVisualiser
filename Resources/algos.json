@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "algo": "BubbleSort",
+    "timeComplexity": "O(n^2)",
+    "description": "Bubble Sort is a simple and inefficient comparison-based sorting algorithm that repeatedly compares adjacent elements in an array and swaps them if they are in the wrong order, causing smaller elements to \"bubble up\" to their correct positions. It has a time complexity of O(n^2) and is typically used for small datasets or for educational purposes.",
+    "code": "func bubbleSort(_ array: inout [Int]) {\n\tlet n = array.count\n\tfor i in 0..<n {\n\t\tfor j in 0..<n-i-1 {\n\t\t\tif array[j] > array[j+1] {\n\t\t\t\tarray.swapAt(j, j+1)\n\t\t\t}\n\t\t}\n\t}\n}"
+  },
+  {
+    "id": 2,
+    "algo": "InsertionSort",
+    "timeComplexity": "O(n^2)",
+    "description": "Insertion Sort is a simple comparison-based sorting algorithm that gradually builds the sorted portion of the array by repeatedly taking an element from the unsorted part and inserting it into its correct position within the sorted part. It has a time complexity of O(n^2) but can perform well for small arrays or partially sorted arrays.",
+    "code": "func insertionSort(_ array: inout [Int]) {\n\tlet n = array.count\n\tfor i in 1..<n {\n\t\tlet key = array[i]\n\t\tvar j = i - 1\n\t\twhile j >= 0 && array[j] > key {\n\t\t\tarray[j + 1] = array[j]\n\t\t\tj -= 1\n\t\t}\n\t\tarray[j + 1] = key\n\t}\n}"
+  },
+  {
+    "id": 3,
+    "algo": "SelectionSort",
+    "timeComplexity": "O(n^2)",
+    "description": "Selection Sort is a simple and inefficient comparison-based sorting algorithm that divides the array into two parts: sorted and unsorted. It repeatedly selects the smallest (or largest) element from the unsorted part and swaps it with the first element of the unsorted part until the entire array is sorted. It has a time complexity of O(n^2) and is not recommended for large arrays.",
+    "code": "func selectionSort(_ array: inout [Int]) {\n\tlet n = array.count\n\tfor i in 0..<n {\n\t\tvar minIndex = i\n\t\tfor j in i+1..<n {\n\t\t\tif array[j] < array[minIndex] {\n\t\t\t\tminIndex = j\n\t\t\t}\n\t\t}\n\t\tif minIndex != i {\n\t\t\tarray.swapAt(i, minIndex)\n\t\t}\n\t}\n}"
+  },
+  {
+    "id": 4,
+    "algo": "QuickSort",
+    "timeComplexity": "O(nlog(n))",
+    "description": "Quick Sort is a popular and efficient comparison-based sorting algorithm that uses a divide-and-conquer strategy. It selects a \"pivot\" element from the array, partitions the array around the pivot, and recursively sorts the resulting smaller sub-arrays. It has an average time complexity of O(n log n) but can degrade to O(n^2) in worst-case scenarios. It is widely used due to its speed and versatility, but careful implementation is required to avoid performance issues.",
+    "code": "func quickSort(_ array: inout [Int], low: Int, high: Int) {\n\tguard low < high else {\n\t\treturn\n\t}\n\n\tlet pivotIndex = partition(&array, low: low, high: high)\n\n\tquickSort(&array, low: low, high: pivotIndex - 1)\n\tquickSort(&array, low: pivotIndex + 1, high: high)\n}\n\nfunc partition(_ array: inout [Int], low: Int, high: Int) -> Int {\n\tlet pivot = array[high]\n\tvar i = low\n\tfor j in low..<high {\n\t\tif array[j] <= pivot {\n\t\t\tarray.swapAt(i, j)\n\t\t\ti += 1\n\t\t}\n\t}\n\tarray.swapAt(i, high)\n\treturn i\n}"
+  }
+]
